@@ -18,15 +18,6 @@ import static org.junit.Assert.*;
  */
 public class AppTest 
 {
-    /**
-     * Rigorous Test :-)
-     */
-    @Test
-    public void shouldAnswerWithTrue()
-    {
-        assertTrue( true );
-    }
-
     private Service createService(){
         StudentValidator studentValidator = new StudentValidator();
         TemaValidator temaValidator = new TemaValidator();
@@ -43,6 +34,14 @@ public class AppTest
     }
 
     @Test
+    public void testAddStudentValid(){
+        Service service = createService();
+        Student student = new Student("baie2468", "Andrei", 0, "baie2466@scs.ubbcluj.ro");
+
+        assertNull(service.addStudent(student));
+    }
+
+    @Test
     public void testAddStudentWithInvalidGroup(){
         Service service = createService();
         Student student = new Student("baie2466", "Andrei", -1, "baie2466@scs.ubbcluj.ro");
@@ -53,13 +52,5 @@ public class AppTest
             fail(e.getMessage());
         }
 
-    }
-
-    @Test
-    public void testAddStudentValid(){
-        Service service = createService();
-        Student student = new Student("baie2468", "Andrei", 0, "baie2466@scs.ubbcluj.ro");
-
-        assertNull(service.addStudent(student));
     }
 }
