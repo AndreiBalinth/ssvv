@@ -1,6 +1,7 @@
 package ssvv.example;
 
 import domain.Student;
+import domain.Tema;
 import org.junit.Test;
 import repository.NotaXMLRepo;
 import repository.StudentXMLRepo;
@@ -15,7 +16,8 @@ import static org.junit.Assert.*;
 
 public class AppTest 
 {
-    private final String VALID_ID = "baie2466";
+    private final String VALID_ID = "baie2466",
+                            VALID_ID_TEMA = "7";
 
     private Service createService(){
         StudentValidator studentValidator = new StudentValidator();
@@ -35,6 +37,11 @@ public class AppTest
     private void removeStudentWithValidId(Service service){
         if(service.findStudent(VALID_ID) != null)
             service.deleteStudent(VALID_ID);
+    }
+
+    private void removeTemaWithValidId(Service service) {
+        if(service.findTema(VALID_ID_TEMA) != null)
+            service.deleteTema(VALID_ID_TEMA);
     }
 
     @Test
@@ -231,5 +238,31 @@ public class AppTest
         } catch (Exception e){
             fail(e.getMessage());
         }
+    }
+
+    @Test
+    public void testAddTemaWithIDInvalid(){
+        Service service = createService();
+        removeTemaWithValidId(service);
+
+        try{
+            service.addTema(
+                    new Tema(null, "asb", 12, 12)
+            );
+            fail();
+        } catch (Exception ignored){}
+    }
+
+    @Test
+    public void testAddTemaWithDescriptionInvalid(){
+        Service service = createService();
+        removeTemaWithValidId(service);
+
+        try{
+            service.addTema(
+                    new Tema(VALID_ID_TEMA, "", 12, 12)
+            );
+            fail();
+        } catch (Exception ignored){}
     }
 }
