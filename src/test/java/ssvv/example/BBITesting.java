@@ -91,8 +91,29 @@ public class BBITesting {
 
     @Test
     public void integrationTest(){
-        testAddStudent();
-        testAddTema();
-        testAddGrade();
+        Service service = createService();
+        removeStudentWithValidId(service);
+        removeTemaWithValidId(service);
+        removeNotaWithValidId(service);
+
+        assertNull(
+                service.addStudent(
+                        new Student(VALID_ID, "Andrei", 10, "email@email.com")
+                )
+        );
+
+        assertNull(
+                service.addTema(
+                        new Tema(VALID_ID_TEMA, "Andrei", 10, 12)
+                )
+        );
+
+        assertEquals(
+                8,
+                service.addNota(
+                        new Nota(VALID_ID_NOTA, "BAIE2466", "6", 8, LocalDate.of(2021, 4, 13)), ""
+                ),
+                0.1
+        );
     }
 }
