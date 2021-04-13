@@ -44,6 +44,8 @@ public class AppTest
             service.deleteTema(VALID_ID_TEMA);
     }
 
+    // addStudent tests
+
     @Test
     public void testAddStudentValid(){
         Service service = createService();
@@ -240,6 +242,8 @@ public class AppTest
         }
     }
 
+    // addTema test cases
+
     @Test
     public void testAddTemaWithIDInvalid(){
         Service service = createService();
@@ -254,6 +258,33 @@ public class AppTest
     }
 
     @Test
+    public void testAddTemaWithIDEmpty(){
+        Service service = createService();
+        removeTemaWithValidId(service);
+
+        try{
+            service.addTema(
+                    new Tema("", "asb", 12, 12)
+            );
+            fail();
+        } catch (Exception ignored){}
+    }
+
+    @Test
+    public void testAddTemaWithIDInvalidBVA(){
+        Service service = createService();
+        removeTemaWithValidId(service);
+
+        try{
+            service.addTema(
+                    new Tema("a", "asb", 12, 12)
+            );
+        } catch (Exception e){
+            fail(e.getMessage());
+        }
+    }
+
+    @Test
     public void testAddTemaWithDescriptionInvalid(){
         Service service = createService();
         removeTemaWithValidId(service);
@@ -264,5 +295,250 @@ public class AppTest
             );
             fail();
         } catch (Exception ignored){}
+    }
+
+    @Test
+    public void testAddTemaWithDescriptionNull(){
+        Service service = createService();
+        removeTemaWithValidId(service);
+
+        try{
+            service.addTema(
+                    new Tema(VALID_ID_TEMA, null, 12, 12)
+            );
+            fail();
+        } catch (Exception ignored){}
+    }
+
+    @Test
+    public void testAddTemaWithDescriptionInvalidBVA(){
+        Service service = createService();
+        removeTemaWithValidId(service);
+
+        try{
+            service.addTema(
+                    new Tema(VALID_ID_TEMA, "a", 12, 12)
+            );
+        } catch (Exception e){
+            fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void testAddTemaWithDeadlineNegative(){
+        Service service = createService();
+        removeTemaWithValidId(service);
+
+        try{
+            service.addTema(
+                    new Tema(VALID_ID_TEMA, "a", -12, 12)
+            );
+            fail();
+        } catch (Exception ignored){}
+    }
+
+    @Test
+    public void testAddTemaWithDeadlinePositiveInvalid(){
+        Service service = createService();
+        removeTemaWithValidId(service);
+
+        try{
+            service.addTema(
+                    new Tema(VALID_ID_TEMA, "a", 20, 12)
+            );
+            fail();
+        } catch (Exception ignored){}
+    }
+
+    @Test
+    public void testAddTemaWithDeadlineInvalidBVA(){
+        Service service = createService();
+        removeTemaWithValidId(service);
+
+        try{
+            service.addTema(
+                    new Tema(VALID_ID_TEMA, "a", 0, 12)
+            );
+            fail();
+        } catch (Exception ignored){}
+    }
+
+    @Test
+    public void testAddTemaWithDeadlineValidBVA(){
+        Service service = createService();
+        removeTemaWithValidId(service);
+
+        try{
+            service.addTema(
+                    new Tema(VALID_ID_TEMA, "a", 1, 12)
+            );
+        } catch (Exception e){
+            fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void testAddTemaWithDeadlineValidBVA_1(){
+        Service service = createService();
+        removeTemaWithValidId(service);
+
+        try{
+            service.addTema(
+                    new Tema(VALID_ID_TEMA, "a", 2, 12)
+            );
+        } catch (Exception e){
+            fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void testAddTemaWithDeadlineValidBVA_2(){
+        Service service = createService();
+        removeTemaWithValidId(service);
+
+        try{
+            service.addTema(
+                    new Tema(VALID_ID_TEMA, "a", 13, 12)
+            );
+        } catch (Exception e){
+            fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void testAddTemaWithDeadlineValidBVA_3(){
+        Service service = createService();
+        removeTemaWithValidId(service);
+
+        try{
+            service.addTema(
+                    new Tema(VALID_ID_TEMA, "a", 14, 12)
+            );
+        } catch (Exception e){
+            fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void testAddTemaWithDeadlineInvalidBVA_1(){
+        Service service = createService();
+        removeTemaWithValidId(service);
+
+        try{
+            service.addTema(
+                    new Tema(VALID_ID_TEMA, "a", 15, 12)
+            );
+            fail();
+        } catch (Exception ignored){
+        }
+    }
+
+    @Test
+    public void testAddTemaWithPrimireNegative(){
+        Service service = createService();
+        removeTemaWithValidId(service);
+
+        try{
+            service.addTema(
+                    new Tema(VALID_ID_TEMA, "a", 12, -12)
+            );
+            fail();
+        } catch (Exception ignored){}
+    }
+
+    @Test
+    public void testAddTemaWithPrimirePositiveInvalid(){
+        Service service = createService();
+        removeTemaWithValidId(service);
+
+        try{
+            service.addTema(
+                    new Tema(VALID_ID_TEMA, "a", 12, 20)
+            );
+            fail();
+        } catch (Exception ignored){}
+    }
+
+    @Test
+    public void testAddTemaWithPrimireInvalidBVA(){
+        Service service = createService();
+        removeTemaWithValidId(service);
+
+        try{
+            service.addTema(
+                    new Tema(VALID_ID_TEMA, "a", 12, 0)
+            );
+            fail();
+        } catch (Exception ignored){}
+    }
+
+    @Test
+    public void testAddTemaWithPrimireValidBVA(){
+        Service service = createService();
+        removeTemaWithValidId(service);
+
+        try{
+            service.addTema(
+                    new Tema(VALID_ID_TEMA, "a", 12, 1)
+            );
+        } catch (Exception e){
+            fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void testAddTemaWithPrimireValidBVA_1(){
+        Service service = createService();
+        removeTemaWithValidId(service);
+
+        try{
+            service.addTema(
+                    new Tema(VALID_ID_TEMA, "a", 12, 2)
+            );
+        } catch (Exception e){
+            fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void testAddTemaWithPrimireValidBVA_2(){
+        Service service = createService();
+        removeTemaWithValidId(service);
+
+        try{
+            service.addTema(
+                    new Tema(VALID_ID_TEMA, "a", 12, 13)
+            );
+        } catch (Exception e){
+            fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void testAddTemaWithPrimireValidBVA_3(){
+        Service service = createService();
+        removeTemaWithValidId(service);
+
+        try{
+            service.addTema(
+                    new Tema(VALID_ID_TEMA, "a", 12, 14)
+            );
+        } catch (Exception e){
+            fail(e.getMessage());
+        }
+    }
+
+    @Test
+    public void testAddTemaWithPrimireInvalidBVA_1(){
+        Service service = createService();
+        removeTemaWithValidId(service);
+
+        try{
+            service.addTema(
+                    new Tema(VALID_ID_TEMA, "a", 12, 15)
+            );
+            fail();
+        } catch (Exception ignored){
+        }
     }
 }
